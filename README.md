@@ -31,6 +31,12 @@ git clone https://github.com/adharvarun/AInstein.git
 cd AInstein
 ```
 
+- Install Dependencies
+
+```
+pip install -r requirements.txt
+```
+
 - Run the Assistant
 
 ```
