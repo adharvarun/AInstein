@@ -18,6 +18,25 @@ AInstein is built to assist with a wide variety of queries, making it a reliable
 ### Built on DeepSeek R-1
 The assistant is powered by the DeepSeek R-1 model, which ensures that it provides accurate, contextually relevant, and intelligent responses to users, making it a valuable resource for anyone looking for an AI-driven assistant.
 
+## Installation
+- Clone the Repo
+
+```
+git clone https://github.com/adharvarun/AInstein.git
+```
+
+- Open the directory
+
+```
+cd AInstein
+```
+
+- Run the Assistant
+
+```
+chainlit run app.py -w
+```
+
 ## Author
 Created and maintained by Adharv Arun  
 GitHub: [https://github.com/adharvarun](https://github.com/adharvarun)
