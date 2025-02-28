@@ -19,7 +19,7 @@ AInstein is built to assist with a wide variety of queries, making it a reliable
 The assistant is powered by the DeepSeek R-1 model, which ensures that it provides accurate, contextually relevant, and intelligent responses to users, making it a valuable resource for anyone looking for an AI-driven assistant.
 
 ## Author
-Created and maintained by **[Your Name]**  
+Created and maintained by Adharv Arun  
 GitHub: [https://github.com/adharvarun](https://github.com/adharvarun)
 
 ## License
