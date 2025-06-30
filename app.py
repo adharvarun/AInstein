@@ -8,16 +8,13 @@ from langchain.schema import StrOutputParser
 from langchain.schema.runnable import Runnable
 from langchain.schema.runnable.config import RunnableConfig
 
-# Get the Hugging Face API key from environment variables
 huggingfacehub_api_token = os.getenv('API_KEY')
 
-# Set up the Hugging Face model endpoint
 huggingface_llm = HuggingFaceEndpoint(
-    repo_id='deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',  # Try another model if needed
+    repo_id='deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
     huggingfacehub_api_token=huggingfacehub_api_token
 )
 
-# Global list to keep track of conversation history
 previous_messages = []
 MAX_HISTORY = 5  
 
@@ -58,22 +55,17 @@ async def on_message(message: cl.Message):
         ):
             response_content += chunk
 
-        # Hardcore Regex Cleanup to remove thinking tokens and unnecessary phrases
         cleaned_response = re.sub(r"<(think|\/think)>.*?</think>", "", response_content, flags=re.DOTALL).strip()  
         cleaned_response = re.sub(r"^(I should|Alright|Okay|Sure|I see|The user said|You mentioned|I should respond).*?\.", "", cleaned_response, flags=re.MULTILINE).strip()
 
         def remove_before_substring(text, substring):
-            # Find the index of the substring
             index = text.find(substring)
-            
-            # If the substring exists, return the part after it
             if index != -1:
-                return text[index + len(substring):].strip()  # Strip removes leading/trailing whitespace
-            return text  # If the substring is not found, return the original text
+                return text[index + len(substring):].strip()
+            return text 
         
         cleaned_response = remove_before_substring(cleaned_response, "</think>")
 
-        # Absolute restriction: Only send responses that contain valid answers
         if cleaned_response and not cleaned_response.isspace():
             previous_messages.append(f"Assistant: {cleaned_response}")  
             msg.content = cleaned_response  
